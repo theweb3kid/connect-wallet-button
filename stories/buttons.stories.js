@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from '@storybook/react'
 
-import { Wallet } from "../components/Button";
+import { Button } from "../src/components/Button/Button";
 
 const stories = storiesOf('App Test', module)
 
 stories.add('App', () => {
-    return (<Wallet />)
+    return (<Button />)
 })

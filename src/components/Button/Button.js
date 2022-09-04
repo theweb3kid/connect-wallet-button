@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react"
-
-const [wallet, setWallet] = useState("")
-const [buttonText, setButtonText] = useState("Connect Wallet")
+import './index.css'
 
 export const Button = ({ isEVM }) => {
 
-    if (isEVM) {
+    const [wallet, setWallet] = useState("")
+    const [buttonText, setButtonText] = useState("Connect Wallet")
+
+    let connectWallet;
+
+    if (isEVM == false) {
 
         const checkPhantomWallet = async () => {
             try {
@@ -43,7 +46,7 @@ export const Button = ({ isEVM }) => {
                         response.publicKey.toString()
                     );
                     setWallet(response.publicKey.toString())
-                    setButtonText("Connected To: ", response.publicKey.toString())
+                    setButtonText("Connected To: " + wallet)
                 } else {
                     console.log("Download Phantom")
                     setButtonText("Download Phantom Wallet")
@@ -61,9 +64,10 @@ export const Button = ({ isEVM }) => {
             return () => window.removeEventListener('load', onLoad);
         }, []);
 
+        connectWallet = connectPhantomWallet
 
-        return (<button onClick={connectPhantomWallet} >{buttonText}</button>)
-    } else {
+
+    } else if (isEVM == true) {
 
         const connectMetamaskWallet = async () => {
             const { ethereum } = window;
@@ -76,7 +80,7 @@ export const Button = ({ isEVM }) => {
 
                 if (accounts.length !== 0) {
                     const account = accounts[0];
-                    setButtonText("Connected To: ", account);
+                    setButtonText("Connected To: " + account);
                     console.log("Connected To: ", account);
                 } else {
                     console.log("Please authorize an account");
@@ -123,12 +127,13 @@ export const Button = ({ isEVM }) => {
             return () => window.removeEventListener('load', onLoad);
         }, []);
 
-        return (<button onClick={connectMetamaskWallet} >{buttonText}</button>)
+        connectWallet = connectMetamaskWallet
+
 
     }
 
+    return (<button className="connect-button" onClick={connectWallet} >{buttonText}</button>)
+
 }
 
-export const Wallet = () => {
-    return (wallet)
-}
+export default Button
