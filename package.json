@@ -1,6 +1,6 @@
 {
   "name": "web3-connect-button",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "description": "Connect to Solana or Ethereum using single connect wallet button.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

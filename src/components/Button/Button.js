@@ -46,7 +46,7 @@ export const Button = ({ isEVM }) => {
                         response.publicKey.toString()
                     );
                     setWallet(response.publicKey.toString())
-                    setButtonText("Connected To: " + wallet)
+                    setButtonText("Connected To: " + wallet.substring(0, 3) + "..." + wallet.substring(wallet.length - 3, wallet.length))
                 } else {
                     console.log("Download Phantom")
                     setButtonText("Download Phantom Wallet")
@@ -64,6 +64,10 @@ export const Button = ({ isEVM }) => {
             return () => window.removeEventListener('load', onLoad);
         }, []);
 
+        useEffect(() => {
+            setButtonText("Connected To: " + wallet.substring(0, 3) + "..." + wallet.substring(wallet.length - 3, wallet.length))
+        }, [wallet])
+
         connectWallet = connectPhantomWallet
 
 
@@ -80,8 +84,10 @@ export const Button = ({ isEVM }) => {
 
                 if (accounts.length !== 0) {
                     const account = accounts[0];
-                    setButtonText("Connected To: " + account);
+                    setWallet(account)
+                    setButtonText("Connected To: " + wallet.substring(0, 3) + "..." + wallet.substring(wallet.length - 3, wallet.length))
                     console.log("Connected To: ", account);
+
                 } else {
                     console.log("Please authorize an account");
                 }
@@ -108,6 +114,8 @@ export const Button = ({ isEVM }) => {
             if (accounts.length !== 0) {
                 const account = accounts[0];
                 console.log("Found an authorized account: ", account);
+                setWallet(account)
+                setButtonText("Connected To: " + wallet.substring(0, 3) + "..." + wallet.substring(wallet.length - 3, wallet.length))
 
             } else {
                 console.log("No authorized accoutn found");
@@ -126,6 +134,10 @@ export const Button = ({ isEVM }) => {
             window.addEventListener('load', onLoad);
             return () => window.removeEventListener('load', onLoad);
         }, []);
+
+        useEffect(() => {
+            setButtonText("Connected To: " + wallet.substring(0, 3) + "..." + wallet.substring(wallet.length - 3, wallet.length))
+        }, [wallet])
 
         connectWallet = connectMetamaskWallet
 

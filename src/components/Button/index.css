@@ -29,13 +29,6 @@
     border-radius: 10px;
 }
 
-.connect-button:active {
-    color: #000
-}
-
-.connect-button:active:after {
-    background: transparent;
-}
 
 .connect-button:hover:before {
     opacity: 1;
