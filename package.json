@@ -1,6 +1,6 @@
 {
   "name": "web3-connect-button",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Connect to Solana or Ethereum using single connect wallet button.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -47,16 +47,14 @@
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.16"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "dependencies": {
-    "autoprefixer": "^10.4.8",
-    "postcss": "^8.4.16"
-  }
+  "module": "dist/index.es.js"
 }
